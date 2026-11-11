@@ -1,11 +1,11 @@
-// Jenkinsfile template for Unity 2021.3.16f1 (no Build Profiles).
+// Jenkinsfile template for Unity 2021.3.45f2 (no Build Profiles).
 // Builds the scenes enabled in File > Build Settings for each TARGET with
 // Assets/Editor/CommandLineBuild.cs. See "Configuring a Legacy Unity Build Pipeline.docx".
 //
 // Unity 2021.3 notes:
 // - Linux64 can build with IL2CPP on the Linux agent if the linux-il2cpp module is
 //   installed. Win64 IL2CPP only builds on Windows, so the editor script uses Mono there.
-// - Agent image modules (UNITY_INSTALLS): 2021.3.16f1:4016570cf34f:windows-mono,webgl,linux-il2cpp
+// - Agent image modules (UNITY_INSTALLS): 2021.3.45f2:4016570cf34f:windows-mono,webgl,linux-il2cpp
 def buildDir(String target, String buildType) {
   def projectPrefix = (env.PROJECT_DIR == '.') ? '' : "${env.PROJECT_DIR}/"
   return "${projectPrefix}Builds/${target}/${buildType}"
@@ -103,7 +103,7 @@ pipeline {
                       DEV_FLAG=""
                       if [ "$BUILD_TYPE" = "Development" ]; then DEV_FLAG="-devBuild"; fi
                       xvfb-run --auto-servernum --server-args='-screen 0 1024x768x24' dbus-launch \
-                      ~/Unity/Hub/Editor/2021.3.16f1/Editor/Unity \
+                      ~/Unity/Hub/Editor/2021.3.45f2/Editor/Unity \
                       -username "$UNITY_USER" \
                       -password "$UNITY_PASSWORD" \
                       -serial "$UNITY_LICENSE_SERIAL" \
